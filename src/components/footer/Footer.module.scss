@@ -1,0 +1,20 @@
+footer {
+    
+    background-color: #F3ECC2;
+    .footerRectangle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        width: 90%;
+        height: 9vh;
+
+        a {
+            text-decoration: none;
+            color: #14B1AB;
+        }
+    }
+
+
+    
+}
