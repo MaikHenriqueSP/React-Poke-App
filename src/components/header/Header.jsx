@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "./../../img/poke-logo.jpg";
 import styles from "./Header.module.scss";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
@@ -11,8 +12,12 @@ const Header = () => {
                     <h1 className={styles.navbarTitle}>Find Your Favorite Pokémons Here</h1>
                 </div>
                 <ul className={styles.navbarList}>
-                    <li>Home</li>
-                    <li>Poké List</li>
+                    <Link to="/">
+                        <li>Home</li>
+                    </Link>
+                    <Link to="/test">
+                        <li>Poké List</li>
+                    </Link>
                 </ul>
             </nav>
         </header>

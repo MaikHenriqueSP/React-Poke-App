@@ -36,26 +36,33 @@ header {
             @include displayFlex($align: none);
             list-style: none;
 
-            li {
-                position: relative;
-                margin-right: 15px;
-                cursor: pointer;
-                letter-spacing: 0.8px;
-                &::after {
-                    content: "";
-                    position: absolute;
-                    left: 0;
-                    bottom: 0;
-                    width: 100%;
-                    opacity: 0;
-                    transition: 200ms ease all;
-                    border-bottom: 1px solid black;                    
+            a {
+                text-decoration: none;
+                color: #262626;
+                letter-spacing: 0.8px;            
+
+                li {
+                    position: relative;
+                    margin-right: 15px;
+                    cursor: pointer;
+                    
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        opacity: 0;
+                        transition: 200ms ease all;
+                        border-bottom: 1px solid black;                    
+                    }
+                    &:hover::after {
+                        opacity: 1;
+                    }
                 }
-                &:hover::after {
-                    opacity: 1;
-                }
-            }
+            }   
         }
     }
 }
+
 
