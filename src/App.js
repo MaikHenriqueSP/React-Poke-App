@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-
+import { Header, Main, Footer } from "./components/index";
+import "./App.module.scss";
 
 class App extends Component {
     render() {
         return (
-            <div>
-                <h1>APP</h1>
-            </div>
+            <>
+                <Header />
+                <Main />
+                <Footer />
+            </>
         );
     }
 }
