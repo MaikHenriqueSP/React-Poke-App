@@ -1,6 +1,6 @@
 import React from "react";
 import pikachuBrand from "./../../img/pikachu-removebg-preview.png";
-import vector from "./../../img/vector-main-page.png";
+// import vector from "./../../img/vector-main-page.png";
 import styles from "./Main.module.scss";
 
 const Main = () => {
@@ -14,7 +14,6 @@ const Main = () => {
                         <p>Find status, moves and everything you want to know about your favorite pokemons.</p>
                     </div>
                 </div>
-                <img src={vector} alt="Wave effect in green" className={styles.vectorStyle} />
             </section>
 
         </main>
