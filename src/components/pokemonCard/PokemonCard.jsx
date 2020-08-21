@@ -1,8 +1,12 @@
 import React from 'react';
 
-const PokemonCard = () => {
+const PokemonCard = ({ pokeName, pokeStats, pokePictureUrl }) => {
+
     return (
-        <h1>AHA</h1>
+        <div>
+            <h4>{pokeName}</h4>
+            <img src={pokePictureUrl} alt={`Representation of ${pokeName}`}/>
+        </div>
     );
 
 }
