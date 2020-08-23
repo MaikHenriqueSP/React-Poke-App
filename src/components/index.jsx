@@ -5,3 +5,4 @@ export {default as PokemonsList} from "./pokemonsList/PokemonsList";
 export {default as Home} from "./home/Home";
 export {default as PokemonCard} from "./pokemonCard/PokemonCard";
 export {default as StatBar} from "./statBar/StatBar";
+export {default as PokeStats} from "./pokeStats/PokeStats";

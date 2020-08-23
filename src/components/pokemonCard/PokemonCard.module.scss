@@ -1,24 +1,23 @@
 .cardContainer {
-    width: 25.1%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    background-color: #14B1AB;
+
+    width: 25.1%;
     margin: 10px 0;
+
+    background-color: #14B1AB;
     border-radius: 10px;
     box-shadow: -1px 1px 2px 1px black;
+
     img {
         width: 150px;
-        max-height: 100px;
+        max-height: 150px;
         margin: 5px 0;
     }
 
     .cardStatsContainer {
         width: 95%;
-        p {
-            display: flex;
-            justify-content: space-between;
-        }
     }
 }
