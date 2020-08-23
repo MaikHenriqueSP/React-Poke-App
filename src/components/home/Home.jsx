@@ -10,7 +10,7 @@ const Home = () => {
                 <img src={pikachuBrand} alt="Pikachu waving hand" />
                 <div className={styles.mainContentText}>
                     <h2>All Pokemons In One Place</h2>
-                    <p>Find status, moves and everything you want to know about your favorite pokemons.</p>
+                    <p>Find status, moves and everything you want to know about your favorites pokemons.</p>
                 </div>
             </div>
         </section>

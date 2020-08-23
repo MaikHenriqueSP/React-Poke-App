@@ -9,7 +9,7 @@ const Header = () => {
             <nav className={styles.navbar}>
                 <div className={styles.navbarContainer}>
                     <img src={logo} alt="Logo of the site which is a pokeball" className={styles.navbarLogo} />
-                    <h1 className={styles.navbarTitle}>Find Your Favorite Pokémons Here</h1>
+                    <h1 className={styles.navbarTitle}>Find Your Favorites Pokémons Here</h1>
                 </div>
                 <ul className={styles.navbarList}>
                     <Link to="/">
