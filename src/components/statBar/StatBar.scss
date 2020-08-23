@@ -1,0 +1,40 @@
+.bar-holder {
+    display:inline-block;
+    height: 30px;
+    width: 150px;
+    background-color: rgb(180, 178, 178);
+
+    .bar-filled {
+        height: 100%;
+        width: 90%;
+        text-align: center;
+        
+        &-attack {
+            // height: inherit;
+            
+            background-color: #FC5603;
+        }
+
+        &-defense {
+            background-color: #036FFC ;
+        }
+
+        &-speed {
+            background-color: #F5ED0C;
+        }
+
+        &-special-defense {
+            background-color: #144687 ;
+        }
+
+        &-special-attack {
+            background-color: #B0440E;
+        }
+
+        &-hp {
+            background-color: #F80012;
+        }
+    }
+
+
+}

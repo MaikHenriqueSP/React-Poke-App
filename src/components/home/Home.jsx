@@ -1,8 +1,8 @@
 import React  from "react";
-import styles from "./HomeComponent.module.scss";
+import styles from "./Home.module.scss";
 import pikachuBrand from "./../../img/pikachu-removebg-preview.png";
 
-const HomeComponent = () => {
+const Home = () => {
 
     return (
         <section className={styles.mainContentSection}>
@@ -17,4 +17,4 @@ const HomeComponent = () => {
     );
 }
 
-export default HomeComponent;
+export default Home;
