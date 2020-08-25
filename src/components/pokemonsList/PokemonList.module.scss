@@ -1,7 +1,4 @@
+@import "./../mixins";
 section {
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    // align-items: center ;
+    @include displayFlex($justify: space-around, $wrap: wrap);
 }

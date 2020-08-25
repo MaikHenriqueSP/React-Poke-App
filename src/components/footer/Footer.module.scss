@@ -1,20 +1,18 @@
-footer {
-    
-    background-color: #F3ECC2;
+@import "./../variables";
+@import "./../mixins";
+
+footer {    
+    background-color: $secondaryYellow;
     .footerRectangle {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include displayFlex($justify: space-between, $align: center);
+
         margin: 0 auto;
         width: 90%;
         height: 9vh;
 
         a {
             text-decoration: none;
-            color: #14B1AB;
+            color: $primaryGreen;
         }
-    }
-
-
-    
+    }    
 }

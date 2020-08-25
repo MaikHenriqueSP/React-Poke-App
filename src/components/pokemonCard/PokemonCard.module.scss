@@ -1,13 +1,13 @@
+@import "./../variables";
+@import "./../mixins";
+
 .cardContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
+    @include displayFlex($align: center, $justify: space-around, $direction: column);
 
     width: 25.1%;
     margin: 10px 0;
 
-    background-color: #14B1AB;
+    background-color: $primaryGreen;
     border-radius: 10px;
     box-shadow: -1px 1px 2px 1px black;
 

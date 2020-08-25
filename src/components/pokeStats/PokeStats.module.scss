@@ -1,5 +1,5 @@
+@import "./../mixins";
 .cardStats {
-    display: flex;
-    justify-content: space-between;
+    @include displayFlex($justify: space-between);
     margin: 5px 0;
 }
