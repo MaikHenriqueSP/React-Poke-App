@@ -10,8 +10,8 @@ const PokemonCard = ({ pokeName, pokeStats, pokePictureUrl }) => {
             <img src={pokePictureUrl} alt={`Representation of ${pokeName}`} />
             <h4>{pokeNameFirstLetterUpperCase}</h4>
             <div className={styles.cardStatsContainer}>
-                {pokeStats.map((stats, index) => (
-                    <PokeStats key={index} baseStat={stats.base_stat} statName={stats.stat.name}/>
+                {pokeStats.map((stats) => (
+                    <PokeStats key={stats.stat.name} baseStat={stats.base_stat} statName={stats.stat.name} />
                 ))}
             </div>
         </div>

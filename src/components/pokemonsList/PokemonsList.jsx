@@ -16,8 +16,8 @@ const PokemonsList = () => {
 
     return (
         <section>
-            {pokeList.map((poke, index) => (
-                <PokemonCard key={index} pokeName={poke.pokeName} pokeStats={poke.pokeStats} pokePictureUrl={poke.pokePictureUrl} />
+            {pokeList.map((poke) => (
+                <PokemonCard key={poke.pokeName} pokeName={poke.pokeName} pokeStats={poke.pokeStats} pokePictureUrl={poke.pokePictureUrl} />
             ))}
         </section>
     );
