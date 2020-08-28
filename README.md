@@ -6,4 +6,4 @@ Feel free to fork/clone it and modify as you like.
 - [x] - Basic Page Structure and style
 - [ ] - Infinite Scroll
 - [ ] - Filters
-- [ ] - Individual Cards Cards
+- [ ] - Individual Cards Page
