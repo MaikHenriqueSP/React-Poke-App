@@ -13,7 +13,7 @@ export default function useData(offset) {
             const response = await fetch(rootUrl);
             const { results, next } = await response.json();
 
-            const a = await Promise.all(results.map(async ({ name, url }) => {
+            const pokeInfoResult = await Promise.all(results.map(async ({ name, url }) => {
                 const resultResponse = await fetch(url);
                 const pokeData = await resultResponse.json();
 
@@ -22,7 +22,7 @@ export default function useData(offset) {
                 return { name, stats, front_default };
             }))
 
-            setPokeInfo(a);
+            setPokeInfo(pokeInfoResult);
             setHasNext(next !== null);
             setIsLoading(false);
         }
