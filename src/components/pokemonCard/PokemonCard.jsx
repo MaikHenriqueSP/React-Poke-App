@@ -3,8 +3,12 @@ import styles from "./PokemonCard.module.scss";
 import { PokeStats } from "./../index";
 
 const PokemonCard = ({ pokeName, pokeStats, pokePictureUrl }) => {
+    if (!pokeName) {
+        return null;
+    }
     const pokeNameFirstLetterUpperCase = pokeName.charAt(0).toUpperCase()
         + pokeName.substring(1, pokeName.length);
+
     return (
         <div className={styles.cardContainer}>
             <img src={pokePictureUrl} alt={`Representation of ${pokeName}`} />
@@ -16,7 +20,6 @@ const PokemonCard = ({ pokeName, pokeStats, pokePictureUrl }) => {
             </div>
         </div>
     );
-
 }
 
 export default PokemonCard;

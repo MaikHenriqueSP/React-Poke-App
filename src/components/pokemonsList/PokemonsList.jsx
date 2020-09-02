@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { PokemonCard } from "./../index";
-import { fetchData } from "./../../api/index";
+import useData from "./../../hooks/useData";
 import "./PokemonList.module.scss";
 
 const PokemonsList = () => {
-    const [pokeList, setPokeList] = useState([]);
-
-    useEffect(() => {
-        const fetchPokeList = async () => {
-            setPokeList(await fetchData());
-        }
-
-        fetchPokeList();
-    }, [setPokeList]);
+    const [offset, setOffset] = useState("1");
+    const { hasNext, pokeInfo, isLoading } = useData(offset);
 
     return (
         <section>
-            {pokeList.map((poke) => (
-                <PokemonCard key={poke.pokeName} pokeName={poke.pokeName} pokeStats={poke.pokeStats} pokePictureUrl={poke.pokePictureUrl} />
+            {pokeInfo.map(({ name, stats, front_default }, index) => (
+                <PokemonCard key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />
             ))}
+            {isLoading && "Loading..."}
         </section>
     );
 
