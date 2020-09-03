@@ -32,9 +32,9 @@ const PokemonsList = () => {
                 return (<PokemonCard key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />);
             }
             )}
-            <div>
-                {isLoading && "Loading..."}
-            </div>
+
+            {isLoading && "Loading..."}
+
         </section>
     );
 
