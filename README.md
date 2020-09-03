@@ -18,3 +18,8 @@ To run it locally simply execute the following command lines in your bash or com
 2. Run npm install
 3. Run npm start
 
+### Dev Dependencies
+- React
+- React-DOM
+- React Router
+- Sass
