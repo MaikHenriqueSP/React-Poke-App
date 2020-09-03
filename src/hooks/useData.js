@@ -4,8 +4,8 @@ export default function useData(offset) {
     const [pokeInfo, setPokeInfo] = useState([{}]);
     const [hasNext, setHasNext] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    
-    
+
+
     useEffect(() => {
         const rootUrl = "https://pokeapi.co/api/v2/pokemon/?" + new URLSearchParams({ offset });
         setIsLoading(true);
@@ -22,7 +22,7 @@ export default function useData(offset) {
                 return { name, stats, front_default };
             }))
 
-            setPokeInfo(pokeInfoResult);
+            setPokeInfo(prevPokeInfo => [...new Set([...prevPokeInfo, ...pokeInfoResult])]);
             setHasNext(next !== null);
             setIsLoading(false);
         }
@@ -31,5 +31,5 @@ export default function useData(offset) {
 
     }, [offset]);
 
-    return {hasNext, pokeInfo, isLoading};
+    return { hasNext, pokeInfo, isLoading };
 }
