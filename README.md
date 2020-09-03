@@ -19,7 +19,7 @@ To run it locally simply execute the following command lines in your bash or com
 3. Run npm start
 
 ### Dev Dependencies
-- React - 16.13.1
-- React-DOM - 16.13.1
-- React Router - 5.2.0
-- Sass - 4.14.1
+- React 
+- React-DOM 
+- React Router 
+- Sass 
