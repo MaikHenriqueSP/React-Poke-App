@@ -6,7 +6,7 @@ import styles from "./PokemonList.module.scss";
 import { Link } from "react-router-dom";
 
 const PokemonsList = () => {
-    const [offset, setOffset] = useState("1");
+    const [offset, setOffset] = useState("0");
     const { hasNext, pokeInfo, isLoading } = useData(offset);
 
     const observer = useRef();
