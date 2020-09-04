@@ -1,4 +1,32 @@
 @import "./../mixins";
 section {
-    @include displayFlex($justify: space-around, $wrap: wrap);
+    .pokemonListContainer {    
+        @include displayFlex($justify: space-around, $wrap: wrap);
+    }
+
+    .loadingSpinnerContainer {
+        position: relative;
+        height: 60px;
+        .loadingSpinner:before {                   
+            content: "";
+            position: absolute;
+            left: 50%;        
+            height: 60px;
+            width: 60px;
+            box-sizing: border-box;
+            
+            border-radius: 50%;
+            border: 8px solid transparent;
+            border-top-color: #14B1AB;
+            border-bottom-color: #14B1AB;
+            
+            animation: spinner 700ms infinite ease;
+        }
+    }   
+}    
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
 }

@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import ReactDOM from "react-dom";
 import { PokemonCard } from "./../index";
 import useData from "./../../hooks/useData";
-import "./PokemonList.module.scss";
+import styles from "./PokemonList.module.scss";
 
 const PokemonsList = () => {
     const [offset, setOffset] = useState("1");
@@ -25,16 +25,17 @@ const PokemonsList = () => {
 
     return (
         <section>
-            {pokeInfo.map(({ name, stats, front_default }, index) => {
-                if (index === pokeInfo.length - 1) {
-                    return (<PokemonCard ref={lastObservablePokeCard} key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />);
-                };
-                return (<PokemonCard key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />);
-            }
-            )}
-
-            {isLoading && "Loading..."}
-
+            <div className={styles.pokemonListContainer}>
+                {pokeInfo.map(({ name, stats, front_default }, index) => {
+                    if (index === pokeInfo.length - 1) {
+                        return (<PokemonCard ref={lastObservablePokeCard} key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />);
+                    };
+                    return (<PokemonCard key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />);
+                })}
+            </div>
+            <div className={styles.loadingSpinnerContainer}>
+                {isLoading && (<div className={styles.loadingSpinner}></div>)}
+            </div>
         </section>
     );
 
