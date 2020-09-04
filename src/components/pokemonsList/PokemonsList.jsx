@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { PokemonCard } from "./../index";
 import useData from "./../../hooks/useData";
 import styles from "./PokemonList.module.scss";
+import { Link } from "react-router-dom";
 
 const PokemonsList = () => {
     const [offset, setOffset] = useState("1");
@@ -27,16 +28,35 @@ const PokemonsList = () => {
         <section>
             <div className={styles.pokemonListContainer}>
                 {pokeInfo.map(({ name, stats, front_default }, index) => {
+                    if (!name) {
+                        return null;
+                    }
+
                     if (index === pokeInfo.length - 1) {
-                        return (<PokemonCard ref={lastObservablePokeCard} key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />);
+                        return (
+                            <Link to={{
+                                pathname: `/list/${name}`,
+                                state: { name }
+                            }} key={name} className={styles.pokemonPageLink}>
+                                <PokemonCard ref={lastObservablePokeCard} key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />
+                            </Link >
+                        );
                     };
-                    return (<PokemonCard key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />);
+
+                    return (
+                        <Link to={{
+                            pathname: `/list/${name}`,
+                            state: { name }
+                        }} key={name} className={styles.pokemonPageLink}>
+                            <PokemonCard key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />
+                        </Link>
+                    );
                 })}
             </div>
             <div className={styles.loadingSpinnerContainer}>
                 {isLoading && (<div className={styles.loadingSpinner}></div>)}
             </div>
-        </section>
+        </section >
     );
 
 }

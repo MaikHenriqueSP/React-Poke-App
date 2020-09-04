@@ -3,6 +3,13 @@ section {
     .pokemonListContainer {    
         @include displayFlex($justify: space-around, $wrap: wrap);
     }
+    
+    .pokemonPageLink {
+        display: flex;
+        width: 25.01%;
+        text-decoration: none;
+        color: #262626;
+    }
 
     .loadingSpinnerContainer {
         position: relative;

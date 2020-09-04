@@ -4,7 +4,7 @@
 .cardContainer {
     @include displayFlex($align: center, $justify: space-around, $direction: column);
 
-    width: 25.1%;
+    width: 100%;
     margin: 10px 0;
 
     background-color: $primaryGreen;

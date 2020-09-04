@@ -3,10 +3,6 @@ import styles from "./PokemonCard.module.scss";
 import { PokeStats } from "./../index";
 
 class PokemonCard extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { pokeName, pokeStats, pokePictureUrl } = this.props;
         if (!pokeName) { return null; }
