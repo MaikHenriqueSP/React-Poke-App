@@ -10,28 +10,31 @@
     border: 0.1px solid rgba(38, 38, 38, 0.3);
     border-radius: 10px;
 
-    .pokeType {
-        display: inline-block;
-        margin: 3px 0;
-        margin-right: 10px;
-        div {
-            @include displayFlex($direction: column, $justify: center, $align: center);
-            
-            img {
-                margin: 0 auto;
-            }
-            
-            h4 {
-                font-weight: normal;
-            }
-        }
+    hr {
+        margin: 10px 0;
     }
-
-    color: #262626;  
+    
     .pokePageContainer {
         width: 95%;        
         margin: 10px auto;    
 
+        .pokeType {
+            display: inline-block;
+            margin: 3px 0;
+            margin-right: 10px;
+            div {
+                @include displayFlex($direction: column, $justify: center, $align: center);            
+                img {
+                    width: 40px;
+                    height: 40px;
+                    margin: 0 auto;
+                }            
+                h4 {
+                    font-weight: normal;
+                }
+            }
+        }
+        
         .profile{
             @include displayFlex();
             .profileAvatarContainer {
@@ -54,17 +57,52 @@
                     }
                 }
             }
-
             .basicInfoContainer {
-                margin-left: 30px;
+                margin-left: 40px;
+
+                .basicInfoDescription, .basicInfoEvolutionChain {
+                    p {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+
+        .strengthsContainer {
+            .strengthAgainst {
+                p, .pokeType {
+                    margin-left: 20px;
+                }
 
 
             }
         }
-        
-        img {
-            width: 40px;
-            height: 40px;
+
+        .moves {
+            p {
+                margin-left: 10px;
+            }
+
+            .movesMoveContainer {
+                .movesMoveStatsBarContainer {
+                    width: 30%;
+                    @include displayFlex($direction: column);
+                    .movesMoveStatsBar {
+                        @include displayFlex($justify: space-between);
+                        margin: 4px 0;                        
+                        p {
+                            margin-right: 10px;
+                        }
+                        
+                    }
+                }
+            }
+        }
+
+        .additionalInfo {
+            p {
+                margin-left: 10px;
+            }
         }
     }
 
