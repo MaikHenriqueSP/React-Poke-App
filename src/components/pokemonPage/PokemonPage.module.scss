@@ -1,0 +1,71 @@
+@import "./../variables";
+@import "./../mixins";
+
+.pokePageSection {
+    width: 95%;
+    margin: 10px auto;  
+
+    background-color: $primaryYellow;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 0.1px solid rgba(38, 38, 38, 0.3);
+    border-radius: 10px;
+
+    .pokeType {
+        display: inline-block;
+        margin: 3px 0;
+        margin-right: 10px;
+        div {
+            @include displayFlex($direction: column, $justify: center, $align: center);
+            
+            img {
+                margin: 0 auto;
+            }
+            
+            h4 {
+                font-weight: normal;
+            }
+        }
+    }
+
+    color: #262626;  
+    .pokePageContainer {
+        width: 95%;        
+        margin: 10px auto;    
+
+        .profile{
+            @include displayFlex();
+            .profileAvatarContainer {
+                @include displayFlex($direction: column, $align: center, $justify: space-around);
+
+                .profileAvatar {
+                    @include displayFlex($align: center, $justify: center);
+                                    
+                    height: 190px;
+                    width: 190px;
+                    
+                    background: 140px 100px $primaryGreen ;
+                    border-radius: 50%;
+                    box-shadow: 0 0 8px #262626;
+                    
+                    img {
+                        width: 150px;
+                        height: 100px;
+                        margin: 0 auto;                        
+                    }
+                }
+            }
+
+            .basicInfoContainer {
+                margin-left: 30px;
+
+
+            }
+        }
+        
+        img {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+}
