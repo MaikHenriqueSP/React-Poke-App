@@ -36,7 +36,7 @@ const PokemonsList = () => {
                         return (
                             <Link to={{
                                 pathname: `/list/${name}`,
-                                state: { name }
+                                state: { name, front_default }
                             }} key={name} className={styles.pokemonPageLink}>
                                 <PokemonCard ref={lastObservablePokeCard} key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />
                             </Link >
@@ -46,7 +46,7 @@ const PokemonsList = () => {
                     return (
                         <Link to={{
                             pathname: `/list/${name}`,
-                            state: { name }
+                            state: { name, front_default }
                         }} key={name} className={styles.pokemonPageLink}>
                             <PokemonCard key={index} pokeName={name} pokeStats={stats} pokePictureUrl={front_default} />
                         </Link>

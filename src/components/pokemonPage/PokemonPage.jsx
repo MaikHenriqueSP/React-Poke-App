@@ -1,8 +1,12 @@
 import React from "react";
 import { StatBar } from "./../index";
 import styles from "./PokemonPage.module.scss";
+import useIndividualData from "./../../hooks/useIndividualData";
 
 const PokemonPage = (props) => {
+    const { location: { state: { front_default, name } } } = props;
+    const { generalInfo, speciesInfo } = useIndividualData(name);
+    const { capture_rate, color_name, evolves_from_name, evolves_to_name } = speciesInfo;
 
     return (
         <section className={styles.pokePageSection}>
@@ -10,9 +14,9 @@ const PokemonPage = (props) => {
                 <article className={styles.profile}>
                     <div className={styles.profileAvatarContainer}>
                         <div className={styles.profileAvatar}>
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/132.svg" alt="Pokémon Profile Picture" />
+                            <img src={front_default} alt="Pokémon Profile" />
                         </div>
-                        <h3>Ditto</h3>
+                        <h3>{name}</h3>
                     </div>
                     <div className={styles.basicInfoContainer}>
                         <div className={styles.basicInfoDescription}>
