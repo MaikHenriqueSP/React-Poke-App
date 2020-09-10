@@ -11,12 +11,13 @@ const useIndividualData = (name) => {
         const fetchData = async () => {
             const response = await fetch(specieInfoURL);
             const { capture_rate, color: { name: color_name }, evolution_chain: { url: evolution_chain_url },
-                evolves_from_species } = await response.json();
+                evolves_from_species, flavor_text_entries } = await response.json();
 
             const evolves_from_name = (evolves_from_species) ? evolves_from_species.name : "";
 
             const evolutionChainFetchResponse = await fetch(evolution_chain_url);
             const evolutionChainFetchData = await evolutionChainFetchResponse.json();
+            const speciesDescription = flavor_text_entries[6].flavor_text
 
             const { chain: { evolves_to } } = evolutionChainFetchData
             const evolves_to_name = evolves_to[0].evolves_to[0].species.name || "";
@@ -25,11 +26,12 @@ const useIndividualData = (name) => {
                 capture_rate,
                 color_name,
                 evolves_from_name,
-                evolves_to_name
+                evolves_to_name,
+                speciesDescription
             });
         };
         fetchData();
-    }, [name]);
+    }, [specieInfoURL, name]);
 
     const mapAbilityInfo = useCallback((abilities) => {
         return Promise.all(abilities.map(async ({ ability: { name: abilityName, url } }) => {
@@ -38,7 +40,7 @@ const useIndividualData = (name) => {
             const abilityDescription = effect_entries[1].effect;
             return { abilityName, abilityDescription };
         }));
-    });
+    }, []);
 
     const mapStrengthsInfo = useCallback((types) => {
         return Promise.all(types.map(async ({ type: { name: typeName, url } }) => {
@@ -59,7 +61,7 @@ const useIndividualData = (name) => {
 
             return { strongAgaint, weakAgainst, neutralAgainst };
         }));
-    });
+    }, []);
 
     const reduceToUniqueStrengthsNames = useCallback((strengthsInfo) => {
         return strengthsInfo.reduce((acc, { strongAgaint, weakAgainst, neutralAgainst }) => {
@@ -74,7 +76,7 @@ const useIndividualData = (name) => {
 
             return acc;
         }, {});
-    });
+    }, []);
 
     const mapMovesInfo = useCallback((moves) => {
         return Promise.all(moves.slice(0, 10).map(async ({ move: { name: moveName, url } }) => {
@@ -83,8 +85,7 @@ const useIndividualData = (name) => {
             const moveDescription = flavor_text_entries[6].flavor_text
             return { moveAccuracy, movePower, moveName, moveDescription };
         }));
-
-    });
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -107,7 +108,7 @@ const useIndividualData = (name) => {
 
         };
         fetchData();
-    }, [name]);
+    }, [pokeInfoURL, name, mapAbilityInfo, mapStrengthsInfo, reduceToUniqueStrengthsNames, mapMovesInfo]);
 
     return { speciesInfo, generalInfo };
 }
