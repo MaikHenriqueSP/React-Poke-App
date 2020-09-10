@@ -7,6 +7,7 @@ const PokemonPage = (props) => {
     const { location: { state: { front_default, name } } } = props;
     const { generalInfo, speciesInfo } = useIndividualData(name);
     const { capture_rate, color_name, evolves_from_name, evolves_to_name } = speciesInfo;
+    const { abilityInfo, weight, height, movesInfo, strengthsInfo } = generalInfo;
 
     return (
         <section className={styles.pokePageSection}>

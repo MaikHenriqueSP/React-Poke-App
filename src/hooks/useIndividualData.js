@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const useIndividualData = (name) => {
     const [speciesInfo, setSpeciesInfo] = useState([{}]);
@@ -10,10 +10,9 @@ const useIndividualData = (name) => {
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(specieInfoURL);
-            const data = await response.json();
-
             const { capture_rate, color: { name: color_name }, evolution_chain: { url: evolution_chain_url },
-                evolves_from_species } = data;
+                evolves_from_species } = await response.json();
+
             const evolves_from_name = (evolves_from_species) ? evolves_from_species.name : "";
 
             const evolutionChainFetchResponse = await fetch(evolution_chain_url);
@@ -28,14 +27,86 @@ const useIndividualData = (name) => {
                 evolves_from_name,
                 evolves_to_name
             });
-
-        }
+        };
         fetchData();
-
     }, [name]);
 
-    useEffect(() => {
+    const mapAbilityInfo = useCallback((abilities) => {
+        return Promise.all(abilities.map(async ({ ability: { name: abilityName, url } }) => {
+            const responseAbilityFetch = await fetch(url);
+            const { effect_entries } = await responseAbilityFetch.json();
+            const abilityDescription = effect_entries[1].effect;
+            return { abilityName, abilityDescription };
+        }));
+    });
 
+    const mapStrengthsInfo = useCallback((types) => {
+        return Promise.all(types.map(async ({ type: { name: typeName, url } }) => {
+            const responseTypeFetch = await fetch(url);
+            const { damage_relations: { double_damage_from, double_damage_to, half_damage_from, half_damage_to,
+                no_damage_from, no_damage_to } } = await responseTypeFetch.json();
+
+            const doubleDamageToNames = double_damage_to.map(({ name }) => name);
+            const halfDamageFromNames = half_damage_from.map(({ name }) => name);
+            const doubleDamageFromNames = double_damage_from.map(({ name }) => name);
+            const halfDamageToNames = half_damage_to.map(({ name }) => name);
+            const noDamageFromNames = no_damage_from.map(({ name }) => name);
+            const noDamageToNames = no_damage_to.map(({ name }) => name);
+
+            const strongAgaint = [...doubleDamageToNames, ...halfDamageFromNames];
+            const weakAgainst = [...doubleDamageFromNames, ...halfDamageToNames];
+            const neutralAgainst = [...noDamageFromNames, ...noDamageToNames];
+
+            return { strongAgaint, weakAgainst, neutralAgainst };
+        }));
+    });
+
+    const reduceToUniqueStrengthsNames = useCallback((strengthsInfo) => {
+        return strengthsInfo.reduce((acc, { strongAgaint, weakAgainst, neutralAgainst }) => {
+            if (!acc["strongAgaint"]) {
+                acc["strongAgaint"] = [];
+                acc["weakAgainst"] = [];
+                acc["neutralAgainst"] = [];
+            }
+            acc["strongAgaint"] = [...new Set([...acc["strongAgaint"], ...strongAgaint])];
+            acc["weakAgainst"] = [...new Set([...acc["weakAgainst"], ...weakAgainst])];
+            acc["neutralAgainst"] = [...new Set([...acc["neutralAgainst"], ...neutralAgainst])];
+
+            return acc;
+        }, {});
+    });
+
+    const mapMovesInfo = useCallback((moves) => {
+        return Promise.all(moves.slice(0, 10).map(async ({ move: { name: moveName, url } }) => {
+            const response = await fetch(url);
+            const { accuracy: moveAccuracy, power: movePower, flavor_text_entries } = await response.json();
+            const moveDescription = flavor_text_entries[6].flavor_text
+            return { moveAccuracy, movePower, moveName, moveDescription };
+        }));
+
+    });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(pokeInfoURL);
+            const data = await response.json();
+            const { weight, height, abilities, moves, types } = data;
+
+            const abilityInfo = await mapAbilityInfo(abilities);
+            const mappedStrengthsInfo = await mapStrengthsInfo(types);
+            const strengthsInfo = reduceToUniqueStrengthsNames(mappedStrengthsInfo);
+            const movesInfo = await mapMovesInfo(moves);
+
+            setGeneralInfo(
+                abilityInfo,
+                weight,
+                height,
+                movesInfo,
+                strengthsInfo
+            );
+
+        };
+        fetchData();
     }, [name]);
 
     return { speciesInfo, generalInfo };

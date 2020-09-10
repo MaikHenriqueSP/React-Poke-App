@@ -12,7 +12,6 @@ export default function useData(offset) {
         const fetchData = async () => {
             const response = await fetch(rootUrl);
             const { results, next } = await response.json();
-            console.log(results);
 
             const pokeInfoResult = await Promise.all(results.map(async ({ name, url }) => {
                 const resultResponse = await fetch(url);
