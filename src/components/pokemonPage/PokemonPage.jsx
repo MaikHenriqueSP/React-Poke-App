@@ -1,5 +1,5 @@
 import React from "react";
-import { StatBar } from "./../index";
+import { StatBar, PokemonMove, Type } from "./../index";
 import styles from "./PokemonPage.module.scss";
 import useIndividualData from "./../../hooks/useIndividualData";
 
@@ -7,7 +7,8 @@ const PokemonPage = (props) => {
     const { location: { state: { front_default, name } } } = props;
     const { generalInfo, speciesInfo } = useIndividualData(name);
     const { capture_rate, color_name, evolves_from_name, evolves_to_name, speciesDescription } = speciesInfo;
-    const { abilityInfo, weight, height, movesInfo, strengthsInfo } = generalInfo;
+    const { abilityInfo, weight, height, movesInfo, strengthsInfo, pokeOwnTypes } = generalInfo;
+    const { strongAgainst, weakAgainst, neutralAgainst } = strengthsInfo || {};
 
     return (
         <section className={styles.pokePageSection}>
@@ -29,13 +30,8 @@ const PokemonPage = (props) => {
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio nostrum voluptate assumenda sint veniam mollitia.</p>
                         </div>
                         <div className="pokeType">
-                            <h2>Type</h2>
-                            <div className={styles.pokeType}>
-                                <div>
-                                    <img src="https://freestencilgallery.com/wp-content/uploads/2016/07/Pokemon-Normal-Type-Symbol-Stencil-thumb.jpg" alt="Type of pokemon: Normal" />
-                                    <h4>Normal</h4>
-                                </div>
-                            </div>
+                            <h2>Type(s)</h2>
+                            {pokeOwnTypes && pokeOwnTypes.map(pokeOwnType => <Type key={pokeOwnType} typeName={pokeOwnType} />)}
                         </div>
                     </div>
                 </article>
@@ -44,49 +40,16 @@ const PokemonPage = (props) => {
                     <div className={styles.strengthsContainer}>
                         <div className={styles.strengthAgainst}>
                             <h2>Strong Against</h2>
-                            <p>This pokemon is not naturally strong agaisnt any type</p>
-                        </div>
-                        <div className={styles.strengthAgainst}>
-                            <h2>Strong Against</h2>
-                            <div className={styles.pokeType}>
-                                <div>
-                                    <img src="https://freestencilgallery.com/wp-content/uploads/2016/07/Pokemon-Normal-Type-Symbol-Stencil-thumb.jpg" alt="Type of pokemon: Normal" />
-                                    <h4>Normal</h4>
-                                </div>
-                            </div>
-                            <div className={styles.pokeType}>
-                                <div>
-                                    <img src="https://freestencilgallery.com/wp-content/uploads/2016/07/Pokemon-Normal-Type-Symbol-Stencil-thumb.jpg" alt="Type of pokemon: Normal" />
-                                    <h4>Normal</h4>
-                                </div>
-                            </div>
-                            <div className={styles.pokeType}>
-                                <div>
-                                    <img src="https://freestencilgallery.com/wp-content/uploads/2016/07/Pokemon-Normal-Type-Symbol-Stencil-thumb.jpg" alt="Type of pokemon: Normal" />
-                                    <h4>Normal</h4>
-                                </div>
-                            </div>
+                            {/* ######TODO <p>This pokemon is not naturally strong agaisnt any type</p> */}
+                            {strongAgainst && strongAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType}/>)}
                         </div>
                         <div className={styles.strengthAgainst}>
                             <h2>Weak Against</h2>
-                            <div className={styles.pokeType}>
-                                <div>
-                                    <img src="https://freestencilgallery.com/wp-content/uploads/2016/07/Pokemon-Normal-Type-Symbol-Stencil-thumb.jpg" alt="Type of pokemon: Normal" />
-                                    <h4>Normal</h4>
-                                </div>
-                            </div>
-                            <div className={styles.pokeType}>
-                                <div>
-                                    <img src="https://freestencilgallery.com/wp-content/uploads/2016/07/Pokemon-Normal-Type-Symbol-Stencil-thumb.jpg" alt="Type of pokemon: Normal" />
-                                    <h4>Normal</h4>
-                                </div>
-                            </div>
-                            <div className={styles.pokeType}>
-                                <div>
-                                    <img src="https://freestencilgallery.com/wp-content/uploads/2016/07/Pokemon-Normal-Type-Symbol-Stencil-thumb.jpg" alt="Type of pokemon: Normal" />
-                                    <h4>Normal</h4>
-                                </div>
-                            </div>
+                            {weakAgainst && weakAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType}/>)}
+                        </div>
+                        <div className={styles.strengthAgainst}>
+                            <h2>Neutral Against</h2>
+                            {neutralAgainst && neutralAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType}/>)}
                         </div>
                     </div>
                 </article>
@@ -94,26 +57,19 @@ const PokemonPage = (props) => {
                 <article className={styles.moves}>
                     <h2>Moves</h2>
                     <p>Here there's a list of some moves that the Pokémon can perform or learn to.</p>
-                    <div className={styles.movesMoveContainer}>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod eaque, neque iure animi qui sunt!</p>
-                        <div className={styles.movesMoveStatsBarContainer}>
-                            <div className={styles.movesMoveStatsBar}>
-                                <p>Power</p>
-                                <StatBar baseStat={100} statName={"power"} />
-                            </div>
-                            <div className={styles.movesMoveStatsBar}>
-                                <p>Accuracy</p>
-                                <StatBar baseStat={100} statName={"accuracy"} />
-                            </div>
-                        </div>
-                    </div>
+                    {movesInfo && movesInfo.map(({ moveAccuracy, movePower, moveName, moveDescription }) => {
+
+                        return <PokemonMove key={moveName} moveAccuracy={moveAccuracy} movePower={movePower}
+                            moveName={moveName} moveDescription={moveDescription} />;
+                    })}
                 </article>
                 <hr />
                 <article className={styles.additionalInfo}>
                     <h2>Additional Information</h2>
-                    <p>Weight: <span>35</span>kg</p>
-                    <p>Height: <span>1</span>m</p>
-                    <p>Color: <span>Pink</span></p>
+                    <p>Weight: {weight} kg</p>
+                    <p>Height: {height} dm</p>
+                    <p>Color: {color_name}</p>
+                    <p>Capture Rate: {capture_rate}%</p>
                 </article>
             </div>
         </section>

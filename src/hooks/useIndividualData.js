@@ -55,22 +55,22 @@ const useIndividualData = (name) => {
             const noDamageFromNames = no_damage_from.map(({ name }) => name);
             const noDamageToNames = no_damage_to.map(({ name }) => name);
 
-            const strongAgaint = [...doubleDamageToNames, ...halfDamageFromNames];
+            const strongAgainst = [...doubleDamageToNames, ...halfDamageFromNames];
             const weakAgainst = [...doubleDamageFromNames, ...halfDamageToNames];
             const neutralAgainst = [...noDamageFromNames, ...noDamageToNames];
 
-            return { strongAgaint, weakAgainst, neutralAgainst };
+            return { strongAgainst, weakAgainst, neutralAgainst };
         }));
     }, []);
 
     const reduceToUniqueStrengthsNames = useCallback((strengthsInfo) => {
-        return strengthsInfo.reduce((acc, { strongAgaint, weakAgainst, neutralAgainst }) => {
-            if (!acc["strongAgaint"]) {
-                acc["strongAgaint"] = [];
+        return strengthsInfo.reduce((acc, { strongAgainst, weakAgainst, neutralAgainst }) => {
+            if (!acc["strongAgainst"]) {
+                acc["strongAgainst"] = [];
                 acc["weakAgainst"] = [];
                 acc["neutralAgainst"] = [];
             }
-            acc["strongAgaint"] = [...new Set([...acc["strongAgaint"], ...strongAgaint])];
+            acc["strongAgainst"] = [...new Set([...acc["strongAgainst"], ...strongAgainst])];
             acc["weakAgainst"] = [...new Set([...acc["weakAgainst"], ...weakAgainst])];
             acc["neutralAgainst"] = [...new Set([...acc["neutralAgainst"], ...neutralAgainst])];
 
@@ -93,19 +93,21 @@ const useIndividualData = (name) => {
             const data = await response.json();
             const { weight, height, abilities, moves, types } = data;
 
+            const pokeOwnTypes = types.map(({ type: { name } }) => name);
             const abilityInfo = await mapAbilityInfo(abilities);
             const mappedStrengthsInfo = await mapStrengthsInfo(types);
             const strengthsInfo = reduceToUniqueStrengthsNames(mappedStrengthsInfo);
             const movesInfo = await mapMovesInfo(moves);
 
-            setGeneralInfo(
+            setGeneralInfo({
                 abilityInfo,
                 weight,
                 height,
                 movesInfo,
-                strengthsInfo
+                strengthsInfo, 
+                pokeOwnTypes
+            }
             );
-
         };
         fetchData();
     }, [pokeInfoURL, name, mapAbilityInfo, mapStrengthsInfo, reduceToUniqueStrengthsNames, mapMovesInfo]);
