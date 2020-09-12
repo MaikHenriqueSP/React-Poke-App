@@ -20,7 +20,6 @@ const useIndividualData = (name) => {
             const speciesDescription = flavor_text_entries[6].flavor_text
 
             const { chain: { evolves_to } } = evolutionChainFetchData
-            // const evolves_to_name = evolves_to[0].evolves_to[0].species.name || "";
             let evolves_to_name = "";
             if (evolves_to[0] && evolves_to[0].evolves_to[0]) {
                 evolves_to_name = evolves_to[0].evolves_to[0].species.name;
@@ -63,6 +62,7 @@ const useIndividualData = (name) => {
             const weakAgainst = [...doubleDamageFromNames, ...halfDamageToNames];
             const neutralAgainst = [...noDamageFromNames, ...noDamageToNames];
 
+            console.log(strongAgainst);
             return { strongAgainst, weakAgainst, neutralAgainst };
         }));
     }, []);

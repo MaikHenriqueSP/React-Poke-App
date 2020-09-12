@@ -1,5 +1,5 @@
 import React from "react";
-import { StatBar, PokemonMove, Type } from "./../index";
+import { PokemonMove, Type } from "./../index";
 import styles from "./PokemonPage.module.scss";
 import useIndividualData from "./../../hooks/useIndividualData";
 
@@ -40,21 +40,26 @@ const PokemonPage = (props) => {
                     <div className={styles.strengthsContainer}>
                         <div className={styles.strengthAgainst}>
                             <h2>Strong Against</h2>
-                            {/* ######TODO <p>This pokemon is not naturally strong agaisnt any type</p> */}
                             <div className={styles.strengthWrapper}>
-                                {strongAgainst && strongAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType} />)}
+                                {strongAgainst && strongAgainst.length !== 0 ?
+                                    strongAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType} />)
+                                    : <p>This pokemon is not naturally strong agaisnt any type.</p>}
                             </div>
                         </div>
                         <div className={styles.strengthAgainst}>
                             <h2>Weak Against</h2>
                             <div className={styles.strengthWrapper}>
-                                {weakAgainst && weakAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType} />)}
+                                {weakAgainst && strongAgainst.length !== 0 ?
+                                    weakAgainst && weakAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType} />)
+                                    : <p>This pokemon is not naturally weak agaisnt any type.</p>}
                             </div>
                         </div>
                         <div className={styles.strengthAgainst}>
                             <h2>Neutral Against</h2>
                             <div className={styles.strengthWrapper}>
-                                {neutralAgainst && neutralAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType} />)}
+                                {neutralAgainst && neutralAgainst.length !== 0 ?
+                                    neutralAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType} />)
+                                    : <p>This pokemon is not naturally neutral agaisnt any type.</p>}
                             </div>
                         </div>
                     </div>
