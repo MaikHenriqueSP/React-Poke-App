@@ -23,3 +23,7 @@ To run it locally simply execute the following command lines in your bash/comman
 - React-DOM 
 - React Router 
 - Sass 
+
+### Credits
+- [Type Icons](https://github.com/duiker101/pokemon-type-svg-icons)
+- [Data Source](https://pokeapi.co/)
