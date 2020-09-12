@@ -20,7 +20,11 @@ const useIndividualData = (name) => {
             const speciesDescription = flavor_text_entries[6].flavor_text
 
             const { chain: { evolves_to } } = evolutionChainFetchData
-            const evolves_to_name = evolves_to[0].evolves_to[0].species.name || "";
+            // const evolves_to_name = evolves_to[0].evolves_to[0].species.name || "";
+            let evolves_to_name = "";
+            if (evolves_to[0] && evolves_to[0].evolves_to[0]) {
+                evolves_to_name = evolves_to[0].evolves_to[0].species.name;
+            }
 
             setSpeciesInfo({
                 capture_rate,
@@ -104,7 +108,7 @@ const useIndividualData = (name) => {
                 weight,
                 height,
                 movesInfo,
-                strengthsInfo, 
+                strengthsInfo,
                 pokeOwnTypes
             }
             );

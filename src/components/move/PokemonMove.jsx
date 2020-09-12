@@ -18,7 +18,7 @@ const PokemonMove = ({ moveAccuracy, movePower, moveName, moveDescription }) => 
                     </div>
                     <div className={styles.movesMoveStatsBar}>
                         <p>Accuracy</p>
-                        <StatBar baseStat={moveAccuracy} statName={"accuracy"} maxValueAvailable={100} />
+                        <StatBar baseStat={`${moveAccuracy}%`} statName={"accuracy"} maxValueAvailable={100} />
                     </div>
                 </div>
             </div>
