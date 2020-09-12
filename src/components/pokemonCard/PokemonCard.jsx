@@ -14,7 +14,7 @@ class PokemonCard extends Component {
                 <h4>{pokeNameFirstLetterUpperCase}</h4>
                 <div className={styles.cardStatsContainer}>
                     {pokeStats.map((stats) => (
-                        <PokeStats key={stats.stat.name} baseStat={stats.base_stat} statName={stats.stat.name} />
+                        <PokeStats key={stats.stat.name} baseStat={stats.base_stat} statName={stats.stat.name} maxValueAvailable={255} />
                     ))}
                 </div>
             </div>

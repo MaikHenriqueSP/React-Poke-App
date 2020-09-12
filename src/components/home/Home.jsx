@@ -1,9 +1,8 @@
-import React  from "react";
+import React from "react";
 import styles from "./Home.module.scss";
 import pikachuBrand from "./../../img/pikachu-removebg-preview.png";
 
 const Home = () => {
-
     return (
         <section className={styles.mainContentSection}>
             <div className={styles.mainContentContainer}>

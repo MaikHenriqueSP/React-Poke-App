@@ -1,11 +1,13 @@
 import React from "react";
 import styles from "./../pokemonPage/PokemonPage.module.scss";
-
+import useTypeIcon from "./../../hooks/useTypeIcon";
 const Type = ({ typeName }) => {
+    const iconUrl = useTypeIcon(typeName);
+
     return (
         <div className={styles.pokeType}>
             <div>
-                <img src="https://freestencilgallery.com/wp-content/uploads/2016/07/Pokemon-Normal-Type-Symbol-Stencil-thumb.jpg" alt="Type of pokemon: Normal" />
+                <img src={iconUrl} alt={`Type of pokemon: ${typeName}`} />
                 <h4>{typeName}</h4>
             </div>
         </div>
