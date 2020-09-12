@@ -41,15 +41,21 @@ const PokemonPage = (props) => {
                         <div className={styles.strengthAgainst}>
                             <h2>Strong Against</h2>
                             {/* ######TODO <p>This pokemon is not naturally strong agaisnt any type</p> */}
-                            {strongAgainst && strongAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType}/>)}
+                            <div className={styles.strengthWrapper}>
+                                {strongAgainst && strongAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType} />)}
+                            </div>
                         </div>
                         <div className={styles.strengthAgainst}>
                             <h2>Weak Against</h2>
-                            {weakAgainst && weakAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType}/>)}
+                            <div className={styles.strengthWrapper}>
+                                {weakAgainst && weakAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType} />)}
+                            </div>
                         </div>
                         <div className={styles.strengthAgainst}>
                             <h2>Neutral Against</h2>
-                            {neutralAgainst && neutralAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType}/>)}
+                            <div className={styles.strengthWrapper}>
+                                {neutralAgainst && neutralAgainst.map(agaisntType => <Type key={agaisntType} typeName={agaisntType} />)}
+                            </div>
                         </div>
                     </div>
                 </article>
