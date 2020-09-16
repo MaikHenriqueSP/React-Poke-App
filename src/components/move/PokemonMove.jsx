@@ -24,7 +24,6 @@ const PokemonMove = ({ moveAccuracy, movePower, moveName, moveDescription }) => 
             </div>
         </div>
     );
-
 };
 
 export default PokemonMove;

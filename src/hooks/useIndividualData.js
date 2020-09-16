@@ -7,34 +7,45 @@ const useIndividualData = (name) => {
     const specieInfoURL = `https://pokeapi.co/api/v2/pokemon-species/${name}`;
     const pokeInfoURL = `https://pokeapi.co/api/v2/pokemon/${name}`;
 
+
+    const mapEvolutionChain = useCallback((evolutionChainData) => {
+        const { chain } = evolutionChainData;
+        const { evolves_to } = chain;
+        const evolutionChain = [chain.species.name];
+
+        for (let i = 0; i < evolves_to.length; i++) {
+            evolutionChain.push(evolves_to[i].species.name);
+            for (let j = 0; j < evolves_to[i].evolves_to.length; j++) {
+                evolutionChain.push(evolves_to[i].evolves_to[j].species.name);
+
+            }
+        }
+
+        return evolutionChain;
+    }, []);
+
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(specieInfoURL);
             const { capture_rate, color: { name: color_name }, evolution_chain: { url: evolution_chain_url },
-                evolves_from_species, flavor_text_entries } = await response.json();
-
-            const evolves_from_name = (evolves_from_species) ? evolves_from_species.name : "";
+                flavor_text_entries} = await response.json();
 
             const evolutionChainFetchResponse = await fetch(evolution_chain_url);
             const evolutionChainFetchData = await evolutionChainFetchResponse.json();
-            const speciesDescription = flavor_text_entries[6].flavor_text
+            const evolutionChain = mapEvolutionChain(evolutionChainFetchData);
 
-            const { chain: { evolves_to } } = evolutionChainFetchData
-            let evolves_to_name = "";
-            if (evolves_to[0] && evolves_to[0].evolves_to[0]) {
-                evolves_to_name = evolves_to[0].evolves_to[0].species.name;
-            }
+            const speciesDescription = flavor_text_entries[6].flavor_text;
 
             setSpeciesInfo({
                 capture_rate,
                 color_name,
-                evolves_from_name,
-                evolves_to_name,
+                evolutionChain,
                 speciesDescription
             });
         };
         fetchData();
-    }, [specieInfoURL, name]);
+    }, [specieInfoURL, name, mapEvolutionChain]);
 
     const mapAbilityInfo = useCallback((abilities) => {
         return Promise.all(abilities.map(async ({ ability: { name: abilityName, url } }) => {
@@ -62,7 +73,6 @@ const useIndividualData = (name) => {
             const weakAgainst = [...doubleDamageFromNames, ...halfDamageToNames];
             const neutralAgainst = [...noDamageFromNames, ...noDamageToNames];
 
-            console.log(strongAgainst);
             return { strongAgainst, weakAgainst, neutralAgainst };
         }));
     }, []);

@@ -6,7 +6,7 @@ import useIndividualData from "./../../hooks/useIndividualData";
 const PokemonPage = (props) => {
     const { location: { state: { front_default, name } } } = props;
     const { generalInfo, speciesInfo } = useIndividualData(name);
-    const { capture_rate, color_name, evolves_from_name, evolves_to_name, speciesDescription } = speciesInfo;
+    const { capture_rate, color_name, evolutionChain, speciesDescription } = speciesInfo;
     const { abilityInfo, weight, height, movesInfo, strengthsInfo, pokeOwnTypes } = generalInfo;
     const { strongAgainst, weakAgainst, neutralAgainst } = strengthsInfo || {};
 
