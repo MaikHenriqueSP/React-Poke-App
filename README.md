@@ -9,8 +9,7 @@ This Project Includes:
 - [x] - Basic listing structure for each card
 - [x] - Basic Page Structure and style
 - [x] - Infinite Scroll
-- [ ] - Filters
-- [ ] - Individual Pokémon Page
+- [x] - Individual Pokémon Page
 
 ### Running The Project Locally:
 To run it locally simply execute the following command lines in your bash/command line:
