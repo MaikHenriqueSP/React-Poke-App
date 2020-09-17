@@ -1,15 +1,17 @@
 import React from "react";
 import { StatBar } from "./../index";
 import styles from "./../pokemonPage/PokemonPage.module.scss";
+import { firstLetterToUpperCase } from "./../../util/util";
 
 const PokemonMove = ({ moveAccuracy, movePower, moveName, moveDescription }) => {
     if (!moveAccuracy || !movePower || !moveName || !moveDescription) {
         return null;
     }
+    const moveNameFirstLetterUppercased = firstLetterToUpperCase(moveName);
     return (
         <div>
             <div className={styles.movesMoveContainer}>
-                <h3>{moveName}</h3>
+                <h3>{moveNameFirstLetterUppercased}</h3>
                 <p>{moveDescription}</p>
                 <div className={styles.movesMoveStatsBarContainer}>
                     <div className={styles.movesMoveStatsBar}>

@@ -9,3 +9,4 @@ export { default as PokeStats } from "./pokeStats/PokeStats";
 export { default as PokemonPage } from "./pokemonPage/PokemonPage";
 export { default as PokemonMove } from "./move/PokemonMove";
 export { default as Type } from "./type/Type";
+export { default as StrengthInfo } from "./strengthInfo/StrengthInfo";

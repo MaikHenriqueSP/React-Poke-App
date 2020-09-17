@@ -13,12 +13,12 @@ const useIndividualData = (name) => {
         const { chain } = evolutionChainData;
         const { evolves_to } = chain;
 
-        const evolutionChain = [firstLetterToUpperCase(chain.species.name)];
+        const evolutionChain = [chain.species.name];
 
         for (let i = 0; i < evolves_to.length; i++) {
-            evolutionChain.push(firstLetterToUpperCase(evolves_to[i].species.name));
+            evolutionChain.push(evolves_to[i].species.name);
             for (let j = 0; j < evolves_to[i].evolves_to.length; j++) {
-                evolutionChain.push(firstLetterToUpperCase(evolves_to[i].evolves_to[j].species.name));
+                evolutionChain.push(evolves_to[i].evolves_to[j].species.name);
             }
         }
 
@@ -97,7 +97,7 @@ const useIndividualData = (name) => {
         return Promise.all(moves.slice(0, 10).map(async ({ move: { name: moveName, url } }) => {
             const response = await fetch(url);
             const { accuracy: moveAccuracy, power: movePower, flavor_text_entries } = await response.json();
-            const moveDescription = flavor_text_entries[6].flavor_text
+            const moveDescription = flavor_text_entries[6].flavor_text;            
             return { moveAccuracy, movePower, moveName, moveDescription };
         }));
     }, []);
