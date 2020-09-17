@@ -10,10 +10,9 @@
     .mainContentContainer {
         @include displayFlex($justify: space-around);
 
-        .mainContentText {            
-            color: $lightYellow;
-                
+        .mainContentText {    
             h2, p {
+                color: $lightYellow;
                 position: relative;
                 top: 20vh;                    
             }
