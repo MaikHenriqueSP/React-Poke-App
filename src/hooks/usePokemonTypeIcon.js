@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useTypeIcon(iconName) {
+const usePokemonTypeIcon = (iconName) => {
     const [image, setImage] = useState([]);
 
     useEffect(() => {
@@ -18,3 +18,6 @@ export default function useTypeIcon(iconName) {
 
     return image;
 }
+
+
+export default usePokemonTypeIcon;

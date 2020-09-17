@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 
-export default function useData(offset) {
+const usePokemonListData = (offset) => {
     const [pokeInfo, setPokeInfo] = useState([{}]);
     const [hasNext, setHasNext] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-
 
     useEffect(() => {
         const rootUrl = "https://pokeapi.co/api/v2/pokemon/?" + new URLSearchParams({ offset });
@@ -33,3 +32,5 @@ export default function useData(offset) {
 
     return { hasNext, pokeInfo, isLoading };
 }
+
+export default usePokemonListData;

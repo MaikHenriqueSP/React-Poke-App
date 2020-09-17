@@ -1,6 +1,6 @@
 import React from "react";
 
-import useTypeIcon from "./../../hooks/useTypeIcon";
+import useTypeIcon from "../../hooks/usePokemonTypeIcon";
 import "./Type.scss";
 import { firstLetterToUpperCase } from "./../../util/util";
 

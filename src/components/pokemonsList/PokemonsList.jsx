@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback } from "react";
 import ReactDOM from "react-dom";
 import { PokemonCard } from "./../index";
-import useData from "./../../hooks/useData";
+import useData from "../../hooks/usePokemonListData";
 import styles from "./PokemonList.module.scss";
 import { Link } from "react-router-dom";
 

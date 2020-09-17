@@ -1,13 +1,22 @@
 import React from "react";
+
 import { PokemonMove, Type, StrengthInfo, AbilityInfo } from "./../index";
+
 import styles from "./PokemonPage.module.scss";
-import useIndividualData from "./../../hooks/useIndividualData";
+
+import useSpeciesData from "../../hooks/usePokemonSpeciesData";
+import usePokemonGeneralInfo from "../../hooks/usePokemonGeneralInfo";
+
 import { firstLetterToUpperCase } from "./../../util/util";
+
 
 const PokemonPage = (props) => {
     const { location: { state: { front_default, name } } } = props;
-    const { generalInfo, speciesInfo } = useIndividualData(name);
+    
+    const { speciesInfo } = useSpeciesData(name);
     const { capture_rate, color_name, evolutionChain, speciesDescription } = speciesInfo;
+
+    const { generalInfo } = usePokemonGeneralInfo(name);
     const { abilityInfo, weight, height, movesInfo, strengthsInfo, pokeOwnTypes } = generalInfo;
     const { strongAgainst, weakAgainst, neutralAgainst } = strengthsInfo || {};
 
@@ -30,7 +39,6 @@ const PokemonPage = (props) => {
                             <h2>Evolution Chain</h2>
                             <p>{evolutionChain && evolutionChain.map((evolutionName, index) => {
                                 const evolutionNameChanged = firstLetterToUpperCase(evolutionName);
-
                                 return index !== evolutionChain.length - 1 ?
                                     (<span key={evolutionName}>{evolutionNameChanged} {' => '} </span>) :
                                     (<span key={evolutionName}>{evolutionNameChanged}.</span>)
