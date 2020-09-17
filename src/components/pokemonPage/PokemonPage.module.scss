@@ -22,15 +22,20 @@
             display: inline-block;
             margin: 3px 0;
             margin-right: 10px;
-            div {
-                @include displayFlex($direction: column, $justify: center, $align: center);            
-                img {
-                    width: 40px;
-                    height: 40px;
-                    margin: 0 auto;
-                }            
-                h4 {
-                    font-weight: normal;
+
+            .typeWrapper{
+                @include displayFlex($justify: center, $align: center);            
+                margin-left: 10px;
+                div {
+                    @include displayFlex($direction: column, $justify: center, $align: center);            
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        margin: 0 auto;
+                    }            
+                    h4 {
+                        font-weight: normal;
+                    }
                 }
             }
         }
@@ -68,32 +73,9 @@
             }
         }
 
-        .strengthsContainer {
-            .strengthAgainst {
-                .strengthWrapper {
-                    margin-left: 25px;
-                }
-            }
-        }
-
         .moves {
             p {
                 margin-left: 10px;
-            }
-
-            .movesMoveContainer {
-                .movesMoveStatsBarContainer {
-                    width: 30%;
-                    @include displayFlex($direction: column);
-                    .movesMoveStatsBar {
-                        @include displayFlex($justify: space-between);
-                        margin: 4px 0;                        
-                        p {
-                            margin-right: 10px;
-                        }
-                        
-                    }
-                }
             }
         }
 

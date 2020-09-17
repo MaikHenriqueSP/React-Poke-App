@@ -1,0 +1,19 @@
+@import "./../mixins";
+
+.moveContainer{
+    margin-left: 10px;
+    .movesMoveContainer {
+        .movesMoveStatsBarContainer {
+            width: 30%;
+            @include displayFlex($direction: column);
+            .movesMoveStatsBar {
+                @include displayFlex($justify: space-between);
+                margin: 4px 0;                        
+                p {
+                    margin-right: 10px;
+                }
+                
+            }
+        }
+    }
+}

@@ -11,7 +11,6 @@ const PokemonPage = (props) => {
     const { abilityInfo, weight, height, movesInfo, strengthsInfo, pokeOwnTypes } = generalInfo;
     const { strongAgainst, weakAgainst, neutralAgainst } = strengthsInfo || {};
 
-    // console.log(abilityInfo);
     return (
         <section className={styles.pokePageSection}>
             <div className={styles.pokePageContainer}>
@@ -38,9 +37,11 @@ const PokemonPage = (props) => {
                             })}
                             </p>
                         </div>
-                        <div className="pokeType">
+                        <div className={styles.pokeType}>
                             <h2>Type(s)</h2>
-                            {pokeOwnTypes && pokeOwnTypes.map(pokeOwnType => (<Type key={pokeOwnType} typeName={pokeOwnType} />))}
+                            <div className={styles.typeWrapper}>
+                                {pokeOwnTypes && pokeOwnTypes.map(pokeOwnType => (<Type key={pokeOwnType} typeName={pokeOwnType} />))}
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -66,8 +67,12 @@ const PokemonPage = (props) => {
                     <h2>Moves</h2>
                     <p>Here's a list of some moves that the Pokémon can naturally perform or learn to.</p>
                     {movesInfo && movesInfo.map(({ moveAccuracy, movePower, moveName, moveDescription }) => {
-                        return (<PokemonMove key={moveName} moveAccuracy={moveAccuracy} movePower={movePower}
-                            moveName={moveName} moveDescription={moveDescription} />);
+                        return (<PokemonMove key={moveName}
+                            moveAccuracy={moveAccuracy}
+                            movePower={movePower}
+                            moveName={moveName}
+                            moveDescription={moveDescription}
+                        />);
                     })}
                 </article>
                 <hr />
@@ -75,7 +80,11 @@ const PokemonPage = (props) => {
                     <div className={styles.abilityInfoWrapper}>
                         <h2>Ability Info</h2>
                         {abilityInfo && abilityInfo.map(({ abilityName, abilityDescription }) => {
-                            return (<AbilityInfo key={abilityName} abilityName={abilityName} abilityDescription={abilityDescription} />)
+                            return (<AbilityInfo
+                                key={abilityName}
+                                abilityName={abilityName}
+                                abilityDescription={abilityDescription}
+                            />);
                         })}
                     </div>
                 </article>

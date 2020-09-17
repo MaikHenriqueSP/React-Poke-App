@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./../pokemonPage/PokemonPage.module.scss";
+// import styles from "./../pokemonPage/PokemonPage.module.scss";
+import styles from "./StrengthInfo.module.scss";
 import { Type } from "./../index";
 
 const StrengthInfo = ({ strengthAgainst, strengthType }) => {

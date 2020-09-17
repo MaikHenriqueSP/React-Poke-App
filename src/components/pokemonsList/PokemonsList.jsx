@@ -42,7 +42,7 @@ const PokemonsList = () => {
                             </Link >
                         );
                     };
-
+                    
                     return (
                         <Link to={{
                             pathname: `/list/${name}`,
