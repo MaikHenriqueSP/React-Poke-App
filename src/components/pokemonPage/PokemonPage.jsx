@@ -27,7 +27,10 @@ const PokemonPage = (props) => {
                         </div>
                         <div className={styles.basicInfoEvolutionChain}>
                             <h2>Evolution Chain</h2>
-                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio nostrum voluptate assumenda sint veniam mollitia.</p>
+                            <p>{evolutionChain && evolutionChain.map((evolutionName, index) =>
+                                index !== evolutionChain.length - 1 ?
+                                    (<span key={evolutionName}>{evolutionName} {' => '} </span>) : (<span key={evolutionName}>{evolutionName}.</span>))
+                            }</p>
                         </div>
                         <div className="pokeType">
                             <h2>Type(s)</h2>
