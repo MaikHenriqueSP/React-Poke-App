@@ -13,9 +13,9 @@ This Project Includes:
 
 ### Running The Project Locally:
 To run it locally simply execute the following command lines in your bash/command line:
-1. Run https://github.com/MaikHenriqueSP/React-Poke-App.git
-2. Run npm install
-3. Run npm start
+1. git clone https://github.com/MaikHenriqueSP/React-Poke-App.git
+2. npm install
+3. npm start
 
 ### Dev Dependencies
 - React 
