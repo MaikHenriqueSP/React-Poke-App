@@ -1,5 +1,5 @@
 import React from "react";
-import { PokemonMove, Type, StrengthInfo } from "./../index";
+import { PokemonMove, Type, StrengthInfo, AbilityInfo } from "./../index";
 import styles from "./PokemonPage.module.scss";
 import useIndividualData from "./../../hooks/useIndividualData";
 import { firstLetterToUpperCase } from "./../../util/util";
@@ -11,6 +11,7 @@ const PokemonPage = (props) => {
     const { abilityInfo, weight, height, movesInfo, strengthsInfo, pokeOwnTypes } = generalInfo;
     const { strongAgainst, weakAgainst, neutralAgainst } = strengthsInfo || {};
 
+    // console.log(abilityInfo);
     return (
         <section className={styles.pokePageSection}>
             <div className={styles.pokePageContainer}>
@@ -68,6 +69,15 @@ const PokemonPage = (props) => {
                         return (<PokemonMove key={moveName} moveAccuracy={moveAccuracy} movePower={movePower}
                             moveName={moveName} moveDescription={moveDescription} />);
                     })}
+                </article>
+                <hr />
+                <article className={styles.abilityInfo}>
+                    <div className={styles.abilityInfoWrapper}>
+                        <h2>Ability Info</h2>
+                        {abilityInfo && abilityInfo.map(({ abilityName, abilityDescription }) => {
+                            return (<AbilityInfo key={abilityName} abilityName={abilityName} abilityDescription={abilityDescription} />)
+                        })}
+                    </div>
                 </article>
                 <hr />
                 <article className={styles.additionalInfo}>
