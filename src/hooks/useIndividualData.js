@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { firstLetterToUpperCase } from "./../util/util";
 
 const useIndividualData = (name) => {
     const [speciesInfo, setSpeciesInfo] = useState([{}]);
